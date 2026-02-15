@@ -1,16 +1,97 @@
-# React + Vite
+# 📰 News Reader App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+The News Reader App is a frontend web application built with React that allows users to browse, search, and read the latest news articles from a public news API. The app fetches real-time news data and presents it in a clean, responsive, and user-friendly interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project simulates a real-world frontend development workflow and focuses on consuming APIs, managing application state, building reusable components, and creating responsive layouts.
 
-## React Compiler
+The primary API source used for this project is the 'Currents News API' (https://currentsapi.services/en)
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+### News Listing
+- Displays a list of news articles including:
+  - Title
+  - Image thumbnail
+  - Brief summary/snippet
+  - Published date
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Article Details View
+- Users can click on any article to view full details:
+  - Full content
+  - Author (if available)
+  - News source/publication
+  - Link to the original article
+
+### Search & Filtering
+- Keyword-based search functionality
+- Filter articles by category (e.g., Technology, Business, Sports) or source
+
+### Responsive UI
+- Fully responsive design for desktop, tablet, and mobile devices
+- Clean, accessible layouts using Tailwind CSS
+
+### Dynamic Routing
+- Dynamic routes allow users to navigate to individual article pages
+
+### Error Handling
+- Graceful handling of:
+  - Network failures
+  - Invalid API responses
+  - Empty search results
+- User-friendly error messages and feedback
+
+---
+
+## 🛠 Tech Stack & Packages
+
+- React
+- Axios (API requests)
+- Tailwind CSS (styling)
+- HTML, CSS, JavaScript
+
+---
+
+## 📋 Functional Requirements
+
+### Fetch News Articles
+- Fetch latest articles from a public news API
+- Display:
+  - Headline
+  - Image
+  - Summary
+  - Published date
+
+### Article Details
+- Clicking an article opens a detailed view showing:
+  - Full article content
+  - Author
+  - Source
+  - External link to the original publication
+
+### Search & Filters
+- Search bar for keyword filtering
+- Category/source filtering
+
+### Responsive Design
+- Adaptive layouts across screen sizes
+- Easy navigation between article list and details
+
+---
+
+## 🎯 Learning Outcomes
+
+This project helps practice:
+
+- Working with external APIs
+- Managing React state
+- Building reusable components
+- Implementing responsive layouts
+- Handling errors gracefully
+- Deploying frontend applications
+
+It provides hands-on experience with real-world frontend development workflows.
+
+
