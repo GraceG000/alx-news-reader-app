@@ -6,7 +6,7 @@ The News Reader App is a frontend web application built with React that allows u
 
 This project simulates a real-world frontend development workflow and focuses on consuming APIs, managing application state, building reusable components, and creating responsive layouts.
 
-The primary API source used for this project is the 'Currents News API' (https://currentsapi.services/en)
+The primary API source used for this project is the 'NewsData.io' (https://newsdata.io/)
 ---
 
 ## ✨ Features
