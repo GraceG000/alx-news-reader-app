@@ -7,7 +7,7 @@ function App () {
   return (
     <Routes>
       <Route path='/' element={<NewsGrid />} />
-      <Route path='/article/:id' element={<ArticleDetailsPage />} />
+      <Route path='/article/:article_id' element={<ArticleDetailsPage />} />
     </Routes>
   )
 }
