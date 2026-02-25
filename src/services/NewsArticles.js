@@ -12,15 +12,33 @@ const newsAPI = axios.create({
 })
 
 //fetching all news articles...
-export  const fetchNewsArticles = async () => {
-  try {
-    const response = await newsAPI.get('/news')
+// export  const fetchNewsArticles = async () => {
+//   try {
+//     const response = await newsAPI.get('/news')
   
-    console.log(API_KEY, BASE_URL);
-    //outputting the response data to the console for debugging purposes...
-    console.log(response.data)
+//     console.log(API_KEY, BASE_URL);
+//     //outputting the response data to the console for debugging purposes...
+//     console.log(response.data)
 
-    return response.data
+//     return response.data
+//   } catch (error) {
+//     throw error
+//   }
+// }
+
+//fetching news articles with optional category filtering...
+export const fetchNewsArticles = async({ category } = {}) => {
+  try{
+    const response = await newsAPI.get('/news', {
+      params: {
+        ...(category && { category }),
+      }
+    })
+    const unique = response.data.results.filter(
+      (article, index, self) =>
+        index === self.findIndex(a => a.title === article.title)
+    )
+    return { results: unique }
   } catch (error) {
     throw error
   }
