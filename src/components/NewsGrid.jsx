@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { fetchNewsArticles } from '../services/NewsArticles'
 import NewsArticleCard from './NewsArticleCard'
+import CategoryFilter from './CategoryFilter'
 
 // Utility function to check if a URL is a valid image
 const isValidImage = url => {
@@ -10,16 +11,33 @@ const isValidImage = url => {
 const NewsGrid = () => {
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
+  const [category, setCategory] = useState('')
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const fetchArticles = async () => {
+  //     try {
+  //       const response = await fetchNewsArticles()
+  //       const unique = response.results.filter(
+  //         (article, index, self) =>
+  //           index === self.findIndex(a => a.title === article.title)
+  //       )
+  //       setArticles(unique)
+  //     } catch (error) {
+  //       console.error('Error fetching news articles:', error)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+
+  //   fetchArticles()
+  // }, [])
+
+   useEffect(() => {
     const fetchArticles = async () => {
+      setLoading(true)
       try {
-        const response = await fetchNewsArticles()
-        const unique = response.results.filter(
-          (article, index, self) =>
-            index === self.findIndex(a => a.title === article.title)
-        )
-        setArticles(unique)
+        const response = await fetchNewsArticles({ category })
+        setArticles(response.results || [])
       } catch (error) {
         console.error('Error fetching news articles:', error)
       } finally {
@@ -28,7 +46,7 @@ const NewsGrid = () => {
     }
 
     fetchArticles()
-  }, [])
+  }, [category]) //refetch articles whenever the category changes...
 
   if (loading) {
     return <p>Loading news articles. Please wait...</p>
@@ -42,6 +60,8 @@ const NewsGrid = () => {
       <div className='mt-2'>
         <p>All the latest news and updates, all in one place</p>
       </div>
+
+      <CategoryFilter selected={category} onSelect={setCategory} />
 
       <div className='mt-4'>
         {articles.length > 0 ? (

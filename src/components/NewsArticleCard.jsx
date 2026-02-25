@@ -16,7 +16,7 @@ const NewsArticleCard = ({
   return (
     <>
       
-      <Link to={`/article/${article_id}`} state={{ article: { article_id, title, image_url, description, pubDate, creator, category, link, source_url, keywords } }}>
+      <Link to={`/article/${article_id}`} state={{ article: { article_id, title, image_url, description, pubDate, creator, category, link, source_url } }}>
         <div className='relative group bg-slate-100 rounded-lg shadow-lg p-1'>
           {/* Hover overlay — now covers the whole card */}
           <div className='absolute inset-0 bg-black/70 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-10'>
