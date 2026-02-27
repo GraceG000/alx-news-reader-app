@@ -32,7 +32,7 @@ const NewsGrid = () => {
   //   fetchArticles()
   // }, [])
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchArticles = async () => {
       setLoading(true)
       try {
@@ -61,7 +61,9 @@ const NewsGrid = () => {
         <p>All the latest news and updates, all in one place</p>
       </div>
 
-      <CategoryFilter selected={category} onSelect={setCategory} />
+      <div className='flex items-center justify-center mx-8'>
+        <CategoryFilter selected={category} onSelect={setCategory} />
+      </div>
 
       <div className='mt-4'>
         {articles.length > 0 ? (
@@ -75,7 +77,7 @@ const NewsGrid = () => {
                   isValidImage(article.image_url)
                     ? article.image_url
                     : '/breaking-news.jpg'
-                } 
+                }
                 description={article.description}
                 pubDate={article.pubDate}
                 creator={article.creator?.[0] || 'Unknown'} // use first creator or default to "Unknown"
