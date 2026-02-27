@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchNewsArticles } from '../services/NewsArticles'
 import NewsArticleCard from './NewsArticleCard'
 import CategoryFilter from './CategoryFilter'
+import SearchBar from './SearchBar'
 
 // Utility function to check if a URL is a valid image
 const isValidImage = url => {
@@ -12,7 +13,17 @@ const NewsGrid = () => {
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [category, setCategory] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedQuery, setDebouncedQuery] = useState('')
 
+  useEffect(() =>{
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery)
+    }, 2000) //debounce search input by 2000ms...
+
+    return () => clearTimeout(timer) //cleanup timer on unmount or when searchQuery changes...
+
+  }, [searchQuery])
   // useEffect(() => {
   //   const fetchArticles = async () => {
   //     try {
@@ -36,7 +47,10 @@ const NewsGrid = () => {
     const fetchArticles = async () => {
       setLoading(true)
       try {
-        const response = await fetchNewsArticles({ category })
+        const response = await fetchNewsArticles({ 
+          category,
+          q: debouncedQuery
+        })
         setArticles(response.results || [])
       } catch (error) {
         console.error('Error fetching news articles:', error)
@@ -46,8 +60,7 @@ const NewsGrid = () => {
     }
 
     fetchArticles()
-  }, [category]) //refetch articles whenever the category changes...
-
+  }, [category, debouncedQuery]) //refetch when either category or debouncedQuery changes
   if (loading) {
     return <p>Loading news articles. Please wait...</p>
   }
@@ -61,7 +74,8 @@ const NewsGrid = () => {
         <p>All the latest news and updates, all in one place</p>
       </div>
 
-      <div className='flex items-center justify-center mx-8'>
+      <div className='flex flex-col items-center justify-center mx-8'>
+        <SearchBar onSearch={setSearchQuery} />
         <CategoryFilter selected={category} onSelect={setCategory} />
       </div>
 
