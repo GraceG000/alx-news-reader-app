@@ -27,11 +27,12 @@ const newsAPI = axios.create({
 // }
 
 //fetching news articles with optional category filtering...
-export const fetchNewsArticles = async({ category } = {}) => {
+export const fetchNewsArticles = async({ category, q } = {}) => {
   try{
     const response = await newsAPI.get('/news', {
       params: {
         ...(category && { category }),
+        ...(q && { q })
       }
     })
     const unique = response.data.results.filter(
